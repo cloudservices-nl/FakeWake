@@ -230,12 +230,7 @@ namespace FakeWake
             keybd_event(VK_SCROLL, 0x45, 0, UIntPtr.Zero); // Press again
             keybd_event(VK_SCROLL, 0x45, KEYEVENTF_KEYUP, UIntPtr.Zero); // Release again
 
-            // Show a brief notification every 10 minutes
-            if (DateTime.Now.Second < 2)
-            {
-                trayIcon.ShowBalloonTip(2000, "FakeWake", "Still keeping you active!", ToolTipIcon.Info);
-            }
-        }
+                    }
 
         private void SetActive(bool active, bool isAutoPause = false)
         {
@@ -266,15 +261,7 @@ namespace FakeWake
                 UpdateContextMenu("Status: Active 😉", "Pause");
                 UpdateStats(null, EventArgs.Empty);
 
-                if (!isAutoPause)
-                {
-                    trayIcon.ShowBalloonTip(2000, "FakeWake", "Now keeping you active!", ToolTipIcon.Info);
-                }
-                else
-                {
-                    trayIcon.ShowBalloonTip(2000, "FakeWake", "Auto-resumed - you're idle again", ToolTipIcon.Info);
-                }
-            }
+                            }
             else
             {
                 // Switch to inactive icon (sleeping eye)
@@ -292,9 +279,8 @@ namespace FakeWake
                 }
                 else
                 {
-                    trayIcon.Text = "FakeWake - Status: Paused 😴";
-                    UpdateContextMenu("Status: Paused 😴", "Resume");
-                    trayIcon.ShowBalloonTip(2000, "FakeWake", "Paused - you may go idle now", ToolTipIcon.Warning);
+                    trayIcon.Text = "FakeWake - Status: Paused";
+                    UpdateContextMenu("Status: Paused", "Resume");
                 }
             }
         }
@@ -486,7 +472,6 @@ namespace FakeWake
                 sessionStartTime = DateTime.Now;
                 SaveStats();
                 UpdateStats(null, EventArgs.Empty);
-                trayIcon.ShowBalloonTip(2000, "FakeWake", "Counter reset! Starting fresh ☕", ToolTipIcon.Info);
             }
         }
 
