@@ -1,0 +1,89 @@
+# Build results
+bin/
+obj/
+.Claude/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Publish output
+publish/
+
+# User-specific files
+*.rsuser
+*.userprefs
+
+# Mono auto generated files
+mono_crash.*
+
+# Build results of an ideally located NuGet Package Manager
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# JetBrains Rider
+*.sln.iml
+
+# dotnet CLI
+.dotnet/
+tools/
+
+# Local History for Visual Studio Code
+.history/
+
+# Claude Code temporary files
+tmpclaude-*/
+tmpclaude-*
+
+# Misc
+nul
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
