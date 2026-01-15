@@ -18,12 +18,13 @@ A Windows system tray application that keeps your session active and prevents Te
 
 ## How It Works
 
-1. Prevents Windows from entering sleep mode
+1. Keeps your PC active, as-if you're working
 2. Toggles Scroll Lock invisibly every 60 seconds (completely silent, no output)
-3. This activity prevents Teams and Windows from marking you as idle/away
-4. **Intelligently auto-pauses** when you're actively working (typing/mouse movement)
-5. **Auto-resumes** after you've been idle for 2 minutes
-6. Tracks and displays your total active time with entertaining messages
+3. This activity prevents Teams and other social apps from marking you as idle/away
+4. **Intelligent AI powered auto-pause** when you're actively working (typing/mouse movement)
+5. **Auto-resumes** after you've been idle for 2 minutes. (Also AI powered... probably)
+6. Tracks and displays your total active time ⌚
+7. Earn achievements 🏆
 
 ## Smart Auto-Pause Feature
 
@@ -32,11 +33,9 @@ FakeWake is smart enough to get out of your way when you're actually working:
 - **Detects Real Activity**: Monitors your keyboard and mouse activity
 - **Auto-Pause**: When you're typing or moving the mouse, FakeWake automatically pauses
   - Status changes to "Auto-paused 💼" (you're working!)
-  - No annoying notifications - it just quietly gets out of the way
   - Your counter stops tracking (only counts time when you're truly idle)
 - **Auto-Resume**: After 2 minutes of no keyboard/mouse activity, FakeWake automatically resumes
   - Starts keeping you active again
-  - Shows a notification: "Auto-resumed - you're idle again"
   - Your counter starts tracking again
 - **Manual Override**: You can still manually pause/resume anytime
   - Manual pause prevents auto-resume (stays paused until you manually resume)
