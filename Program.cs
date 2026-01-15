@@ -219,7 +219,7 @@ namespace FakeWake
             keepAliveTimer.Tick += KeepAlive;
         }
 
-        private void KeepAlive(object? sender, EventArgs e)
+        private void KeepAlive(object sender, EventArgs e)
         {
             if (!isActive) return;
 
@@ -330,7 +330,7 @@ namespace FakeWake
             return 0;
         }
 
-        private void CheckUserActivity(object? sender, EventArgs e)
+        private void CheckUserActivity(object sender, EventArgs e)
         {
             uint idleSeconds = GetIdleTimeSeconds();
 
@@ -355,7 +355,7 @@ namespace FakeWake
             }
         }
 
-        private void UpdateStats(object? sender, EventArgs e)
+        private void UpdateStats(object sender, EventArgs e)
         {
             if (isActive)
             {
@@ -457,7 +457,7 @@ namespace FakeWake
             }
         }
 
-        private void ResetStats(object? sender, EventArgs e)
+        private void ResetStats(object sender, EventArgs e)
         {
             var result = MessageBox.Show(
                 $"Are you sure you want to reset your activity counter?\n\nCurrent time tracked: {FormatTimeSpan(totalActiveTime + (DateTime.Now - sessionStartTime))}\n\nThis cannot be undone!",
@@ -475,7 +475,7 @@ namespace FakeWake
             }
         }
 
-        private void ToggleActive(object? sender, EventArgs e)
+        private void ToggleActive(object sender, EventArgs e)
         {
             // When manually toggling, clear auto-pause state
             if (!isActive)
@@ -494,7 +494,7 @@ namespace FakeWake
             }
         }
 
-        private void ShowAbout(object? sender, EventArgs e)
+        private void ShowAbout(object sender, EventArgs e)
         {
             MessageBox.Show(
                 "FakeWake v1.3\n\n" +
@@ -513,7 +513,7 @@ namespace FakeWake
             );
         }
 
-        private void Exit(object? sender, EventArgs e)
+        private void Exit(object sender, EventArgs e)
         {
             // Save stats before exiting
             SaveStats();
