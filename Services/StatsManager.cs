@@ -9,22 +9,6 @@ namespace FakeWake.Services
         private TimeSpan totalActiveTime;
         private DateTime sessionStartTime;
 
-        private static readonly (double MaxHours, string Message)[] Achievements =
-        {
-            (0.5, "Rookie numbers"),
-            (1, "Getting started"),
-            (2, "Productive vibes"),
-            (4, "Going strong"),
-            (8, "Full workday dodged"),
-            (12, "Dedication level: High"),
-            (24, "You're a legend"),
-            (48, "Superhuman detected"),
-            (100, "Absolute madlad"),
-            (200, "Coffee addicted"),
-            (500, "Professional procrastinator"),
-            (1000, "Time wizard"),
-            (double.MaxValue, "Eternal presence achieved")
-        };
 
         public StatsManager()
         {
@@ -100,12 +84,20 @@ namespace FakeWake.Services
         public string GetAchievement()
         {
             var hours = TotalTime.TotalHours;
-            foreach (var (maxHours, message) in Achievements)
-            {
-                if (hours < maxHours)
-                    return message;
-            }
-            return Achievements[Achievements.Length - 1].Message;
+
+            if (hours < 0.5) return "Rookie numbers";
+            if (hours < 1) return "Getting started";
+            if (hours < 2) return "Productive vibes";
+            if (hours < 4) return "Going strong";
+            if (hours < 8) return "Full workday dodged";
+            if (hours < 12) return "Dedication level: High";
+            if (hours < 24) return "You're a legend";
+            if (hours < 48) return "Superhuman detected";
+            if (hours < 100) return "Absolute animal";
+            if (hours < 200) return "Coffee addicted";
+            if (hours < 500) return "Professional procrastinator";
+            if (hours < 1000) return "Time wizard";
+            return "Eternal presence achieved";
         }
 
         public string GetFormattedTime()

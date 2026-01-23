@@ -2,9 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net45</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>7.3</LangVersion>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+
+    <!-- Assembly metadata -->
+    <Product>FakeWake</Product>
+    <Company>FakeWake</Company>
+    <Authors>FakeWake</Authors>
+    <Description>Keeps your Windows session active and prevents messaging apps from marking you as Away</Description>
+    <Copyright>Copyright (c) 2024-2026</Copyright>
+    <Version>1.5.0</Version>
+    <FileVersion>1.5.0.0</FileVersion>
+    <AssemblyVersion>1.5.0.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>
