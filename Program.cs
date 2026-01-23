@@ -41,6 +41,7 @@ namespace FakeWake
         private DateTime sessionStartTime;
         private int statsClickCount = 0;
         private DateTime lastStatsClick = DateTime.MinValue;
+        private bool keepMenuOpen = false;
         private readonly string statsFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "FakeWake",
@@ -107,6 +108,16 @@ namespace FakeWake
                 ForeColor = Color.DarkGreen
             };
             contextMenu.Items.Add(statsItem);
+
+            // Prevent menu from closing when clicking stats item
+            contextMenu.Closing += (s, e) =>
+            {
+                if (keepMenuOpen && e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
+                {
+                    e.Cancel = true;
+                    keepMenuOpen = false;
+                }
+            };
 
             contextMenu.Items.Add(new ToolStripSeparator());
 
@@ -471,6 +482,11 @@ namespace FakeWake
             {
                 statsClickCount = 0;
                 ResetStats();
+            }
+            else
+            {
+                // Keep menu open for continued clicking
+                keepMenuOpen = true;
             }
         }
 
