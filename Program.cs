@@ -131,36 +131,38 @@ namespace FakeWake
 
         private Icon CreateActiveIcon()
         {
-            // Create a winking eye icon - represents "faking" being awake
+            // Create a bed with coffee cup - represents "faking" being awake
             Bitmap bitmap = new Bitmap(32, 32);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.Transparent);
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                // Draw the eye outline (circle)
-                using (SolidBrush eyeBrush = new SolidBrush(Color.White))
-                using (Pen outlinePen = new Pen(Color.Black, 2))
-                using (SolidBrush irisBrush = new SolidBrush(Color.FromArgb(70, 130, 180))) // Steel blue
-                using (SolidBrush pupilBrush = new SolidBrush(Color.Black))
-                using (SolidBrush highlightBrush = new SolidBrush(Color.White))
-                using (Pen winkPen = new Pen(Color.OrangeRed, 2.5f)) // Orange-red for active wink
+                // Bright green background for visibility
+                using (SolidBrush bgBrush = new SolidBrush(Color.FromArgb(50, 205, 50))) // Lime green
+                using (SolidBrush bedBrush = new SolidBrush(Color.White))
+                using (Pen bedPen = new Pen(Color.White, 2f))
+                using (SolidBrush coffeeBrush = new SolidBrush(Color.White))
                 {
-                    // Eye background
-                    g.FillEllipse(eyeBrush, 6, 8, 20, 20);
-                    g.DrawEllipse(outlinePen, 6, 8, 20, 20);
+                    // Green circle background
+                    g.FillEllipse(bgBrush, 1, 1, 30, 30);
 
-                    // Iris (blue part)
-                    g.FillEllipse(irisBrush, 11, 13, 10, 10);
+                    // Bed frame - simple rectangle
+                    g.FillRectangle(bedBrush, 4, 18, 18, 8);
 
-                    // Pupil
-                    g.FillEllipse(pupilBrush, 14, 16, 4, 4);
+                    // Headboard
+                    g.FillRectangle(bedBrush, 4, 14, 4, 12);
 
-                    // Eye highlight (sparkle)
-                    g.FillEllipse(highlightBrush, 12, 14, 3, 3);
+                    // Pillow
+                    g.FillEllipse(bedBrush, 6, 15, 6, 4);
 
-                    // Wink arc - playful curve at bottom right
-                    g.DrawArc(winkPen, 20, 20, 8, 8, 180, 180);
+                    // Coffee cup (top right) - shows "awake"
+                    g.FillRectangle(coffeeBrush, 22, 16, 6, 8);
+                    // Cup handle
+                    g.DrawArc(bedPen, 26, 17, 4, 5, -90, 180);
+                    // Steam lines
+                    g.DrawLine(bedPen, 24, 14, 24, 11);
+                    g.DrawLine(bedPen, 26, 13, 26, 10);
                 }
             }
 
@@ -171,36 +173,35 @@ namespace FakeWake
 
         private Icon CreateInactiveIcon()
         {
-            // Create a sleeping/closed eye icon - represents paused/inactive
+            // Create a bed with ZZZ - represents paused/sleeping
             Bitmap bitmap = new Bitmap(32, 32);
             using (Graphics g = Graphics.FromImage(bitmap))
             {
                 g.Clear(Color.Transparent);
                 g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-                using (SolidBrush faceBrush = new SolidBrush(Color.LightGray))
-                using (Pen outlinePen = new Pen(Color.DarkGray, 2))
-                using (Pen eyelidPen = new Pen(Color.DarkSlateGray, 2.5f))
+                // Gray background for inactive
+                using (SolidBrush bgBrush = new SolidBrush(Color.FromArgb(128, 128, 128))) // Gray
+                using (SolidBrush bedBrush = new SolidBrush(Color.White))
+                using (Font zzFont = new Font("Arial", 7, FontStyle.Bold))
+                using (SolidBrush zzBrush = new SolidBrush(Color.White))
                 {
-                    // Face circle (dimmed)
-                    g.FillEllipse(faceBrush, 6, 8, 20, 20);
-                    g.DrawEllipse(outlinePen, 6, 8, 20, 20);
+                    // Gray circle background
+                    g.FillEllipse(bgBrush, 1, 1, 30, 30);
 
-                    // Closed eye - curved line
-                    g.DrawArc(eyelidPen, 10, 15, 12, 6, 0, 180);
+                    // Bed frame - simple rectangle
+                    g.FillRectangle(bedBrush, 4, 18, 18, 8);
 
-                    // Eyelashes (3 small lines)
-                    g.DrawLine(eyelidPen, 11, 16, 9, 14);
-                    g.DrawLine(eyelidPen, 16, 15, 16, 13);
-                    g.DrawLine(eyelidPen, 21, 16, 23, 14);
+                    // Headboard
+                    g.FillRectangle(bedBrush, 4, 14, 4, 12);
+
+                    // Pillow
+                    g.FillEllipse(bedBrush, 6, 15, 6, 4);
 
                     // ZZZ for sleeping
-                    using (Font zzFont = new Font("Arial", 6, FontStyle.Bold))
-                    using (SolidBrush zzBrush = new SolidBrush(Color.Gray))
-                    {
-                        g.DrawString("z", zzFont, zzBrush, 22, 6);
-                        g.DrawString("z", zzFont, zzBrush, 24, 3);
-                    }
+                    g.DrawString("z", zzFont, zzBrush, 20, 14);
+                    g.DrawString("z", zzFont, zzBrush, 23, 8);
+                    g.DrawString("z", zzFont, zzBrush, 25, 2);
                 }
             }
 
@@ -258,7 +259,7 @@ namespace FakeWake
                 // Prevent system sleep and display sleep
                 SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_DISPLAY_REQUIRED);
                 keepAliveTimer.Start();
-                UpdateContextMenu("Status: Active 😉", "Pause");
+                UpdateContextMenu("Status: Active", "Pause");
                 UpdateStats(null, EventArgs.Empty);
 
                             }
@@ -273,8 +274,8 @@ namespace FakeWake
 
                 if (isAutoPause)
                 {
-                    trayIcon.Text = "FakeWake - Auto-paused (you're working) 💼";
-                    UpdateContextMenu("Status: Auto-paused 💼", "Pause");
+                    trayIcon.Text = "FakeWake - Auto-paused";
+                    UpdateContextMenu("Status: Auto-paused", "Pause");
                     // Don't show balloon tip for auto-pause to avoid annoying the user
                 }
                 else
@@ -363,7 +364,7 @@ namespace FakeWake
                 var totalTime = totalActiveTime + currentSessionTime;
 
                 // Update tooltip
-                trayIcon.Text = $"FakeWake ☕\n{GetFunMessage(totalTime)}\n{FormatTimeSpan(totalTime)}";
+                trayIcon.Text = $"FakeWake - {FormatTimeSpan(totalTime)}";
 
                 // Update context menu stats item
                 if (trayIcon.ContextMenuStrip != null && trayIcon.ContextMenuStrip.Items.Count > 1)
@@ -383,7 +384,7 @@ namespace FakeWake
         {
             var currentSessionTime = isActive ? DateTime.Now - sessionStartTime : TimeSpan.Zero;
             var totalTime = totalActiveTime + currentSessionTime;
-            return $"⏱️ {GetFunMessage(totalTime)}: {FormatTimeSpan(totalTime)}";
+            return $"🏆 {GetFunMessage(totalTime)}\n⏱️ Time: {FormatTimeSpan(totalTime)}";
         }
 
         private string GetFunMessage(TimeSpan time)
@@ -497,16 +498,15 @@ namespace FakeWake
         private void ShowAbout(object sender, EventArgs e)
         {
             MessageBox.Show(
-                "FakeWake v1.3\n\n" +
+                "FakeWake v1.4\n\n" +
                 "Keeps your Windows session active and prevents Teams/Slack from marking you as Away.\n\n" +
                 "Features:\n" +
                 "• Smart auto-pause when you're working\n" +
                 "• Auto-resume after 2 minutes idle\n" +
-                "• Activity time counter with fun messages\n" +
-                "• Dynamic icons (winking eye 😉 / sleeping eye 😴)\n" +
+                "• Activity time counter\n" +
                 "• Prevents system sleep\n" +
-                "• Silent operation (Scroll Lock toggle)\n\n" +
-                "Double-click the tray icon to pause/resume manually.",
+                "• Silent operation\n\n" +
+                "Double-click the tray icon to pause/resume.",
                 "About FakeWake",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
