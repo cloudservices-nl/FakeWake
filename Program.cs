@@ -291,7 +291,7 @@ namespace FakeWake
             if (trayIcon.ContextMenuStrip != null)
             {
                 trayIcon.ContextMenuStrip.Items[0].Text = statusText;
-                trayIcon.ContextMenuStrip.Items[4].Text = toggleText;
+                trayIcon.ContextMenuStrip.Items[3].Text = toggleText;
             }
         }
 
