@@ -9,12 +9,12 @@ A Windows system tray application that keeps your session active and prevents Te
 - **Auto-Resume**: Automatically resumes after 2 minutes of inactivity
 - **Activity Time Counter**: Tracks total time keeping you active across all sessions
 - **Fun Milestone Messages**: Hilarious messages that evolve as you rack up hours
-- **Dynamic System Tray Icons**: Winking eye when active 😉, sleeping eye when paused 😴
+- **Dynamic System Tray Icons**: Bed with coffee when active, bed with ZZZ when paused
 - **Pause/Resume**: Easy toggle to pause the keep-alive functionality
 - **No Screen Interference**: Toggles Scroll Lock invisibly - completely silent, no console output
 - **Prevents Sleep**: Keeps your display and system awake
 - **Persistent Stats**: Your counter survives restarts and saves automatically
-- **Reset Counter**: Start fresh anytime with the reset option
+- **Secret Reset**: Click the time counter 5 times to reset (with a funny confirmation)
 
 ## How It Works
 
@@ -61,7 +61,7 @@ The counter displays hilarious messages that evolve as you accumulate active tim
 | 8-12h | "Dedication level: High" |
 | 12-24h | "You're a legend" |
 | 24-48h | "Superhuman detected" |
-| 48-100h | "Absolute madlad" |
+| 48-100h | "Absolute animal" |
 | 100-200h | "Coffee addicted" |
 | 200-500h | "Professional procrastinator" |
 | 500-1000h | "Time wizard" |
@@ -70,23 +70,23 @@ The counter displays hilarious messages that evolve as you accumulate active tim
 ## Usage
 
 1. Run `FakeWake.exe`
-2. A winking eye icon 😉 will appear in your system tray
-3. **Start working?** FakeWake automatically pauses itself - icon changes to sleeping eye 😴
+2. A bed with coffee icon will appear in your system tray (green = active)
+3. **Start working?** FakeWake automatically pauses itself - icon turns gray with ZZZ
 4. **Stepped away?** After 2 minutes of idle time, FakeWake automatically resumes
-5. **Hover** over the icon to see your current stats and fun message
+5. **Hover** over the icon to see your current stats
 6. **Right-click** the icon for options:
-   - View your current activity counter with fun message
+   - View your current achievement and time counter
    - View current status (Active, Auto-paused, or Paused)
-   - Pause/Resume the keep-alive function manually
-   - Reset Counter - Start tracking from zero
+   - Pause/Resume manually
    - About information
    - Exit the application
-7. **Double-click** the icon to quickly pause/resume manually
+7. **Double-click** the icon to quickly pause/resume
+8. **Secret reset**: Click the time counter 5 times rapidly to reset your stats
 
 ## Where Your Stats Are Displayed
 
-1. **Tray Icon Tooltip** - Hover to see: "FakeWake 😉 | [Fun Message] | [Time]"
-2. **Context Menu** - Right-click shows: "⏱️ [Fun Message]: [Time]"
+1. **Tray Icon Tooltip** - Hover to see your current time
+2. **Context Menu** - Right-click shows your achievement and time counter
 3. **Auto-Updates** - Stats refresh every 10 seconds while active
 
 ## Data Storage
@@ -131,15 +131,13 @@ Output: `bin\Release\net6.0-windows\win-x64\publish\FakeWake.exe` (146 MB, fully
 
 ## Icon
 
-The application features clever dual-state icons that match its name and purpose:
+The application features dual-state icons:
 
-- **Active Icon** 😉 - A winking eye in vibrant colors (blue iris, orange-red wink)
-  - Represents "faking" being awake with a playful wink
+- **Active Icon** - A bed with a coffee cup on a green background
+  - Represents "faking" being awake while cozy
   - Displayed when FakeWake is actively keeping you active
-  - The wink says "I know what we're doing here 😉"
 
-- **Inactive/Paused Icon** 😴 - A closed/sleeping eye with "zzz"
-  - Gray tones with eyelashes and sleep symbols
+- **Inactive/Paused Icon** - A bed with ZZZ on a gray background
   - Displayed when paused (manual or auto-pause)
   - Clearly shows the app is resting
 
@@ -165,11 +163,11 @@ The icons change automatically based on state, giving you instant visual feedbac
 
 - **First Time**: Your counter starts at "Rookie numbers" - everyone starts somewhere!
 - **Long Sessions**: The messages get funnier the longer you go
-- **Icon Changes**: Winking eye 😉 when active, sleeping eye 😴 when paused - instant visual feedback!
+- **Icon Changes**: Green bed+coffee when active, gray bed+ZZZ when paused
 - **Just Started Working?**: Wait ~5 seconds and FakeWake will automatically pause itself
 - **Stepping Away?**: After 2 minutes of no activity, FakeWake automatically resumes
 - **Manual Control**: Click Pause anytime - it won't auto-resume until you manually Resume
-- **Reset Anytime**: Use "Reset Counter" if you want to start fresh
+- **Reset Anytime**: Click the time counter 5 times to start fresh
 - **Counter Accuracy**: Counter only tracks when FakeWake is actually active (not when you're working)
 - **Multiple PCs**: Stats are local to each machine
 
@@ -179,7 +177,7 @@ Use this tool responsibly and in accordance with your organization's policies. T
 
 ## Version
 
-**FakeWake v1.3** - Now with Dynamic Icons, Smart Auto-Pause, Activity Counter & Fun Messages!
+**FakeWake v1.5** - Now with achievements, smart auto-pause, and secret reset!
 
 ---
 
