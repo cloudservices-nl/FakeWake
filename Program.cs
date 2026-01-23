@@ -103,10 +103,11 @@ namespace FakeWake
             };
             contextMenu.Items.Add(statusItem);
 
-            var statsItem = new ToolStripMenuItem(GetStatsText(), null, OnStatsClick)
+            var statsItem = new ToolStripMenuItem(GetStatsText())
             {
                 ForeColor = Color.DarkGreen
             };
+            statsItem.MouseDown += OnStatsClick;
             contextMenu.Items.Add(statsItem);
 
             // Prevent menu from closing when clicking stats item
@@ -115,7 +116,6 @@ namespace FakeWake
                 if (keepMenuOpen && e.CloseReason == ToolStripDropDownCloseReason.ItemClicked)
                 {
                     e.Cancel = true;
-                    keepMenuOpen = false;
                 }
             };
 
@@ -467,8 +467,11 @@ namespace FakeWake
             }
         }
 
-        private void OnStatsClick(object sender, EventArgs e)
+        private void OnStatsClick(object sender, MouseEventArgs e)
         {
+            // Keep menu open by default
+            keepMenuOpen = true;
+
             // Reset click count if more than 2 seconds since last click
             if ((DateTime.Now - lastStatsClick).TotalSeconds > 2)
             {
@@ -481,12 +484,9 @@ namespace FakeWake
             if (statsClickCount >= 5)
             {
                 statsClickCount = 0;
+                keepMenuOpen = false; // Allow menu to close for dialog
+                trayIcon.ContextMenuStrip.Close();
                 ResetStats();
-            }
-            else
-            {
-                // Keep menu open for continued clicking
-                keepMenuOpen = true;
             }
         }
 
