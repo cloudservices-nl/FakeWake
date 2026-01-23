@@ -39,6 +39,8 @@ namespace FakeWake
         // Activity tracking
         private TimeSpan totalActiveTime;
         private DateTime sessionStartTime;
+        private int statsClickCount = 0;
+        private DateTime lastStatsClick = DateTime.MinValue;
         private readonly string statsFilePath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
             "FakeWake",
@@ -100,9 +102,8 @@ namespace FakeWake
             };
             contextMenu.Items.Add(statusItem);
 
-            var statsItem = new ToolStripMenuItem(GetStatsText())
+            var statsItem = new ToolStripMenuItem(GetStatsText(), null, OnStatsClick)
             {
-                Enabled = false,
                 ForeColor = Color.DarkGreen
             };
             contextMenu.Items.Add(statsItem);
@@ -111,9 +112,6 @@ namespace FakeWake
 
             var toggleItem = new ToolStripMenuItem("Pause", null, ToggleActive);
             contextMenu.Items.Add(toggleItem);
-
-            var resetStatsItem = new ToolStripMenuItem("Reset Counter", null, ResetStats);
-            contextMenu.Items.Add(resetStatsItem);
 
             contextMenu.Items.Add(new ToolStripSeparator());
 
@@ -458,13 +456,43 @@ namespace FakeWake
             }
         }
 
-        private void ResetStats(object sender, EventArgs e)
+        private void OnStatsClick(object sender, EventArgs e)
         {
+            // Reset click count if more than 2 seconds since last click
+            if ((DateTime.Now - lastStatsClick).TotalSeconds > 2)
+            {
+                statsClickCount = 0;
+            }
+
+            lastStatsClick = DateTime.Now;
+            statsClickCount++;
+
+            if (statsClickCount >= 5)
+            {
+                statsClickCount = 0;
+                ResetStats();
+            }
+        }
+
+        private void ResetStats()
+        {
+            var totalTime = totalActiveTime + (DateTime.Now - sessionStartTime);
+            var funnyMessages = new[]
+            {
+                "Whoa there! You've mass-clicked your way to the nuclear option!",
+                "So you want to pretend none of this ever happened?",
+                "Erasing evidence of your 'productivity', are we?",
+                "Starting fresh? Bold move, cotton.",
+                "You sure? Those fake hours won't fake themselves again!"
+            };
+            var random = new Random();
+            var message = funnyMessages[random.Next(funnyMessages.Length)];
+
             var result = MessageBox.Show(
-                $"Are you sure you want to reset your activity counter?\n\nCurrent time tracked: {FormatTimeSpan(totalActiveTime + (DateTime.Now - sessionStartTime))}\n\nThis cannot be undone!",
-                "Reset Counter",
+                $"{message}\n\nYou're about to reset {FormatTimeSpan(totalTime)} of tracked time.\n\nNo takebacks!",
+                "Reset Counter?",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
+                MessageBoxIcon.Warning
             );
 
             if (result == DialogResult.Yes)
