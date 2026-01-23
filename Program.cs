@@ -516,7 +516,13 @@ namespace FakeWake
                 totalActiveTime = TimeSpan.Zero;
                 sessionStartTime = DateTime.Now;
                 SaveStats();
-                UpdateStats(null, EventArgs.Empty);
+
+                // Update menu item directly (UpdateStats may skip if auto-paused)
+                if (trayIcon.ContextMenuStrip != null && trayIcon.ContextMenuStrip.Items.Count > 1)
+                {
+                    trayIcon.ContextMenuStrip.Items[1].Text = GetStatsText();
+                }
+                trayIcon.Text = $"FakeWake - {FormatTimeSpan(TimeSpan.Zero)}";
             }
         }
 
