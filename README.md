@@ -47,7 +47,7 @@ FakeWake is smart enough to get out of your way when you're actually working:
 - Prevents double-activity (your real work + simulated activity)
 - Makes the counter more accurate (only tracks true idle time)
 
-## Activity Counter & Fun Messages
+## Achievements & Leaderboard
 
 The counter displays hilarious messages that evolve as you accumulate active time:
 
@@ -66,6 +66,7 @@ The counter displays hilarious messages that evolve as you accumulate active tim
 | 200-500h | "Professional procrastinator" |
 | 500-1000h | "Time wizard" |
 | 1000+ hours | "Eternal presence achieved" |
+| 1500+ hours | "Black hole time dilation" |
 
 ## Usage
 
